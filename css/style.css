@@ -53,10 +53,10 @@
 	#map1, #map2{margin:10px auto; width:240px; height:80px; background:#000;}
 
 	/* CHAT WINDOW */
-	#chatwindow{height:42.96875%; max-height:330px; overflow:auto; padding:8px 10px; background:#ebeae7;}
+	#chatwindow{/*height:42.96875%;*/ max-width:240px; height:330px; overflow:auto; padding:8px 10px; background:#ebeae7;}
 	#chatwindow strong{font-weight:normal;}
 	#chatwindow ol{margin:0; padding:0;}
-	#chatwindow li{list-style:none; padding:7px 0; border-bottom:1px solid #ccc;}
+	#chatwindow li{display:block; list-style:none; padding:7px 0; border-bottom:1px solid #ccc;}
 	.commentfield{width:87.5%; max-width:215px; margin:4.1666667%;}
 	.person1 strong{color:#3e9ed5;}
 	.person2 strong{color:#747474;}
@@ -66,7 +66,7 @@
 	#video{background-color:#000;}
 	#settings{background-color:#ccc; padding:9.765625% 5%;}
 	#map{background-color:#ccc; padding:9.765625% 0;}
-	#bigmap{width:80%; height:80%;}
+	#bigmap{width:80%; height:60%;}
 /*
 	@media all and (max-width: 1024px){#col1{width:784px;}}
 	@media all and (max-width: 960px){#col1{width:720px;}}

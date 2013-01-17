@@ -8,8 +8,8 @@
 	 <!--[if lte IE 8]>
 	     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
 	 <![endif]-->
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
-    <script src="js/organictabs.jquery.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src='js/organictabs.jquery.js'></script>
 	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
 	<script src="webrtc.io.js"></script>
     <script>
@@ -28,7 +28,8 @@
 
       var PeerConnection = window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection;
       console.log(PeerConnection);
-      	
+    
+      window.addEventListener('load', init, false);
 	  function init() {
     	console.log("in init()");
         if(PeerConnection){
@@ -58,16 +59,18 @@
         });
 
         initChat();
+        window.removeEventListener('load', init, false);
       }      
       
       // CHAT
       function addToChat(msg) {
-        var messages = document.getElementById('chatmessages');
+        var chatwindow = document.getElementById('chatwindow');
+        var chatmessages = document.getElementById('chatmessages');
         msg = sanitize(msg);
         //<li class="person1"><strong>Jared:</strong> Hey this is so clear that i cant tell the difference between the previous demo. <em>11:27am</em></li>
         msg = '<li class="person1">' + msg + '</li>';
-        messages.innerHTML = messages.innerHTML + msg + '<br>';
-        messages.scrollTop = 10000;
+        chatmessages.innerHTML += msg;
+        chatwindow.scrollTop = chatwindow.scrollHeight;
       }
 
       function sanitize(msg) {
@@ -78,20 +81,23 @@
         var input = document.getElementById("chatinput");
 
         input.addEventListener('keydown', function(event) {
-          var key = event.which || event.keyCode;
-          //console.log(key);
-          if (key === 13) {
-          	//console.log(rtc);
-            rtc._socket.send(JSON.stringify({
-              "eventName": "chat_msg",
-              "data": {
-              "messages": input.value,
-              "room": room
-              }
-            }));
-            addToChat(input.value);
-            input.value = "";
-          }
+            if(input.value != ''){
+                var key = event.which || event.keyCode;
+                //console.log(key);
+                if (key === 13) {
+                    //console.log(rtc);
+                    rtc._socket.send(JSON.stringify({
+                        "eventName": "chat_msg",
+                        "data": {
+                        "messages": input.value,
+                        "room": room
+                    }
+                    }));
+                    addToChat(input.value);
+                    input.value = "";
+                }
+            }
+          
         }, false);
         rtc.on('receive_chat_msg', function(data) {
           console.log(data.color);
@@ -136,15 +142,18 @@
             $("#panelholder").organicTabs();
 
 			// populate maps
-            var map1 = L.map('map1').setView([51.505, -0.09], 13);
-	    	var map2 = L.map('map2').setView([51.505, -0.09], 13);
-			var bigmap = L.map('bigmap').setView([51.505, -0.09], 13);
-
+            var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	        var osm1 = L.tileLayer(osmUrl);
+            var osm2 = L.tileLayer(osmUrl);
+            var osm3 = L.tileLayer(osmUrl);
+            var map1 = L.map('map1').setView([40.7063, -73.9971], 13).addLayer(osm1);
+	    	var map2 = L.map('map2').setView([51.505, -0.09], 13).addLayer(osm2);
+			var bigmap = L.map('bigmap').setView([40.7063, -73.9971], 13).addLayer(osm3);
      });
     </script>
 </head>
 
-<body onload="init()">
+<body>
 	<div id="main">
 		<!-- BEGIN COL1 -->
 		<div id="col1">
@@ -155,12 +164,13 @@
 					<li id="mapicon" class="icon"><a href="#map"><img src="img/map.png" alt="map"></a></li>
 					<li id="fullscreenicon" class="icon active"><img src="img/fullscreen.png" alt="fullscreen" id="fullscreen"></li>
 					<li id="settingsicon" class="icon"><a href="#settings"><img src="img/gear.png" alt="gear"></a></li>
-					<li id="plusicon" class="icon"><img src="img/plus.png" alt="plus"></li>
+					<li id="plusicon" class="icon"><a href="#video"><img src="img/plus.png" alt="plus"></a></li>
 	            </ul>
 				</nav>
 	       		<div id="video"><video id="main_videoplayer" width="100%" height="auto" poster="img/poster.png" autoplay>
 		        	Your browser does not support the video tag.
-				</video></div>
+				</video>
+				</div>
 				<div id="settings" class="hide"><h1>settings</h1></div>
 				<div id="map" class="hide"><div id="bigmap"></div></div>
 			</div>
