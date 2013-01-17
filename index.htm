@@ -140,6 +140,21 @@
 			$('#settingsicon, #mapicon').mouseup(function() {
 				$('#fullscreenicon').removeClass('active').addClass('hidden');
         	});
+			$('#main_videoplayer').mouseup(function() {
+				// Nothing				
+        	});
+			$('#self_videoplayer, #map1').mouseup(function() {
+				var tmp = document.getElementById('self_videoplayer').src;
+				document.getElementById('self_videoplayer').src = document.getElementById('main_videoplayer').src;
+				document.getElementById('main_videoplayer').src = tmp;
+        	});
+			$('#other_videoplayer, #map2').mouseup(function() {
+				var tmp = document.getElementById('other_videoplayer').src;
+				document.getElementById('other_videoplayer').src = document.getElementById('main_videoplayer').src;
+				document.getElementById('main_videoplayer').src = tmp;
+				
+        	});
+
 
 			// tabs
             $("#panelholder").organicTabs();
