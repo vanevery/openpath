@@ -21,6 +21,8 @@
     			Display username and time for chat messages
     */
 
+	var username = "user" + Math.floor(Math.random() * 10000);
+
       var room = 1;
       var server = "ws://www.walking-productions.com:8001/";
       
@@ -85,15 +87,16 @@
                 var key = event.which || event.keyCode;
                 //console.log(key);
                 if (key === 13) {
+		var message = username + ": " + input.value;	
                     //console.log(rtc);
                     rtc._socket.send(JSON.stringify({
                         "eventName": "chat_msg",
                         "data": {
-                        "messages": input.value,
+                        "messages": message,
                         "room": room
                     }
                     }));
-                    addToChat(input.value);
+                    addToChat(message);
                     input.value = "";
                 }
             }
