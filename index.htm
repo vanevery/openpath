@@ -113,7 +113,7 @@
       console.log("parsed webrtc stuff");
     </script>	
     <script>
-        $(function() {
+        $(document).ready(function() {
 	
 			// fullscreen video mode
 			 function goFullscreen(id) {
@@ -127,7 +127,7 @@
 			// activate fullscreen
 			$('#fullscreen').mouseup(function() {
 				if($('#logo a').hasClass('current')){
-					goFullscreen('videoplayer');
+					goFullscreen('main_videoplayer');
 				};
         	});
 			// toggle fullscreen button based on state
