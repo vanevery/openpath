@@ -49,8 +49,8 @@
 	.person:hover .userlocation{
 	  	opacity:1;
 	}
-	.location{float:right; padding-top:10px; width:200px; font-weight:bold;}
-	#map1, #map2{margin:10px auto; width:240px; height:80px; background:#000;}
+	.personmeta{float:right; width:200px; font-weight:bold;}
+	.thumbmap{margin:10px auto; width:240px; height:80px; background:#000;}
 
 	/* CHAT WINDOW */
 	#chatwindow{/*height:42.96875%;*/ max-width:240px; height:330px; overflow:auto; padding:8px 10px; background:#ebeae7;}
@@ -61,7 +61,15 @@
 	.person1 strong{color:#3e9ed5;}
 	.person2 strong{color:#747474;}
 	.clearer{clear:both;}
-
+	
+	
+	/* USER LOGIN */
+	#overlay{z-index:3000; position:absolute; top: 0; left: 0; width: 100%; height:100%; }
+	#overlaybgd{position:absolute; top: 0; left: 0; width: 100%; height:100%; opacity: 0.4; background-color: #000;}
+    #loginbox{text-align:center; font-size:24px; border-radius:5px; margin: 200px auto; width: 300px; padding:30px 60px; background: #fff; position: relative;} 
+    #loginbox p{margin-top:0; padding-top:0;}
+    #loginbox input{height:16px; padding:4px; font-size:16px; margin-bottom:5px;}
+	
 	#panelholder div{width:100%; height:768px;}
 	#video{background-color:#000;}
 	#settings{background-color:#ccc; padding:9.765625% 5%;}

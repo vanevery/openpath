@@ -21,7 +21,7 @@
     			Display username and time for chat messages
     */
 
-	var username = "user" + Math.floor(Math.random() * 10000);
+      var username = "user" + Math.floor(Math.random() * 10000);
 
       var room = 1;
       var server = "ws://www.walking-productions.com:8001/";
@@ -117,7 +117,15 @@
     </script>	
     <script>
         $(document).ready(function() {
-	
+	        
+	        $('#submitname').mouseup(function() {
+                username = $('#username').val();
+                if(username != ''){
+                    $('#overlay').remove();
+                    $('.personmeta').prepend(username + '<br>');
+                }
+            });
+	        
 			// fullscreen video mode
 			 function goFullscreen(id) {
 			    var element = document.getElementById(id);
@@ -152,9 +160,7 @@
 				var tmp = document.getElementById('other_videoplayer').src;
 				document.getElementById('other_videoplayer').src = document.getElementById('main_videoplayer').src;
 				document.getElementById('main_videoplayer').src = tmp;
-				
         	});
-
 
 			// tabs
             $("#panelholder").organicTabs();
@@ -164,8 +170,8 @@
 	        var osm1 = L.tileLayer(osmUrl);
             var osm2 = L.tileLayer(osmUrl);
             var osm3 = L.tileLayer(osmUrl);
-            var map1 = L.map('map1').setView([40.7063, -73.9971], 13).addLayer(osm1);
-	    	var map2 = L.map('map2').setView([42.6746, -73.2407], 13).addLayer(osm2);
+            var thumbmap1 = L.map('thumbmap1').setView([40.7063, -73.9971], 13).addLayer(osm1);
+	    	var thumbmap2 = L.map('thumbmap2').setView([42.6746, -73.2407], 13).addLayer(osm2);
 			var bigmap = L.map('bigmap').setView([40.7039, -73.9952], 13).addLayer(osm3);
      });
     </script>
@@ -185,7 +191,7 @@
 					<li id="plusicon" class="icon"><a href="#video"><img src="img/plus.png" alt="plus"></a></li>
 	            </ul>
 				</nav>
-	       		<div id="video"><video id="main_videoplayer" width="100%" height="auto" poster="img/poster.png" autoplay>
+	       		<div id="video"><video id="main_videoplayer" width="100%" height="auto" poster="img/poster.png" autoplay controls>
 		        	Your browser does not support the video tag.
 				</video>
 				</div>
@@ -198,15 +204,15 @@
 		<div id="col2">
 			<div class="person">
             	<div class="userlocation">
-					<img src="img/pin.png" class="pin" alt="pin"><div class="location">Brooklyn Bridge, NY</div>
-					<div id="map1"></div>
+					<img src="img/pin.png" class="pin" alt="pin"><div class="personmeta">Brooklyn Bridge, NY</div>
+					<div id="thumbmap1" class="thumbmap"></div>
                 </div>
                 <video id="self_videoplayer" class="avatar" width="240" height="auto" poster="img/poster.png" autoplay></video>
 				</div>
             <div class="person">
                     <div class="userlocation">
-                	<img src="img/pin.png" class="pin" alt="pin"><div class="location">Williamstown, MA</div>
-					<div id="map2"></div>
+                	<img src="img/pin.png" class="pin" alt="pin"><div class="personmeta">Williamstown, MA</div>
+					<div id="thumbmap2" class="thumbmap"></div>
                 </div>
             	<video id="other_videoplayer" class="avatar" width="240" height="auto" poster="img/poster.png" autoplay></video></div>
 			<!-- BEGIN CHAT -->
@@ -223,5 +229,17 @@
 		<!-- END COL2 -->
 		<div class="clearer"></div>
 	</div>
+	
+	<!-- USER LOGIN -->
+	<div id="overlay">
+		<div id="overlaybgd"></div>	
+        <div id="loginbox">
+			<p>Enter your name.</p>
+			  <label for="textfield"></label>
+			  <input type="text" name="username" id="username">
+			  <input type="submit" name="button" id="submitname" value="Submit">
+		</div>
+    </div>
+	
 </body>
 </html>
