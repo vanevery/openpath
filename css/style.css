@@ -62,14 +62,33 @@
 	.person2 strong{color:#747474;}
 	.clearer{clear:both;}
 	
-	
 	/* USER LOGIN */
 	#overlay{z-index:3000; position:absolute; top: 0; left: 0; width: 100%; height:100%; }
 	#overlaybgd{position:absolute; top: 0; left: 0; width: 100%; height:100%; opacity: 0.4; background-color: #000;}
-    #loginbox{text-align:center; font-size:24px; border-radius:5px; margin: 200px auto; width: 300px; padding:30px 60px; background: #fff; position: relative;} 
-    #loginbox p{margin-top:0; padding-top:0;}
-    #loginbox input{height:16px; padding:4px; font-size:16px; margin-bottom:5px;}
-	
+    #loginbox{font:14px/16px 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#91949d; margin: 200px auto; width: 560px; height:350px; padding:20px; background: #fff; position: relative;}
+    #loginbox h1, #loginbox h2{color:#000; margin:0 0 15px 0; font-weight:normal;}
+    #loginbox h1{font-size:36px;}
+    #loginbox h2{font-size:24px;}
+    
+    .twocol{margin-top:40px; width:80%;}
+    .twocol label{display:block; margin-bottom:10px;}
+    .twocol input[type=text]{width:100%;
+        background: #f8fafa; /* Old browsers */
+        background: -moz-linear-gradient(top, #f8fafa 0%, #ffffff 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8fafa), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #f8fafa 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #f8fafa 0%,#ffffff 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #f8fafa 0%,#ffffff 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #f8fafa 0%,#ffffff 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8fafa', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    }
+    .col1{width:45%; margin-right:5%; float:left;}
+    .col2{width:45%; float:right;}
+    
+    #loginbox input[type=text]{padding:14px 7px; height:40px; border-radius:3px; height:16px; padding:4px; font-size:16px; margin-bottom:5px;}
+    .icons, .icons li{margin:0; padding:0;}
+    .icons li{display:inline;}
+
 	#panelholder div{width:100%; height:768px;}
 	#video{background-color:#000;}
 	#settings{background-color:#ccc; padding:9.765625% 5%;}
