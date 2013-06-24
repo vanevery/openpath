@@ -1,14 +1,21 @@
-var app = require('express').createServer();
-app.listen(8001);
-var webRTC = require('webrtc.io').listen(app);
+var httpexpress = require("express");
+var httpapp = httpexpress();
+httpapp.listen(8000);
 
-console.log("Server running on port 8001");
-
-/*
-app.get('/', function(req, res) {
-  res.sendfile(__dirname + '/index.htm');
+httpapp.get('/dev.html', function(req, res) {
+  res.sendfile(__dirname + '/dev.html');
+	console.log("serving dev.html");
 });
-*/
+httpapp.get('/webrtc.io.js', function(req, res) {
+  res.sendfile(__dirname + '/webrtc.io.js');
+	console.log("serving webrtc.io.js");
+});
+
+console.log("HTTP Server Running on Port 8000");
+
+
+var webRTC = require('webrtc.io').listen(8001);
+console.log("WebRTC Server Running on Port 8001");
 
 webRTC.rtc.on('connect', function(rtc) {
   //Client connected
