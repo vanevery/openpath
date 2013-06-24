@@ -5,12 +5,26 @@
 	<title>WebRTC Testing</title>
 	<script src="webrtc.io.js"></script>
 	<script>
+
+		function getParameterByName(name) {
+    			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        		results = regex.exec(location.search);
+    			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
 		var username = "user" + Math.floor(Math.random() * 10000);
 
 		var room = 1;
+		if (getParameterByName('room') != null && getParameterByName('room') != "") {
+			room = getParameterByName('room');
+			console.log("Room Number: " + room);
+		}
+		
 		var max_num_videos = 2;
-
-		var server = "ws://www.walking-productions.com:8001/";
+		
+		//var server = "ws://www.walking-productions.com:8001/";
+		var server = "ws://www.openpath.me:8001/";
 
 		var main_video = null;
 		var other_video = null;
@@ -137,8 +151,8 @@
 </head>
 
 <body>
-	       	<video id="main_videoplayer" width="720" height="auto" poster="img/poster.png" autoplay controls></video>
-                <video id="self_videoplayer" width="240" height="auto" poster="img/poster.png" autoplay muted="muted""></video>
-            	<video id="other_videoplayer" width="240" height="auto" poster="img/poster.png" autoplay onclick="videoclicked();"></video>
+	       	<video id="main_videoplayer" width="720" height="auto" autoplay controls></video>
+                <video id="self_videoplayer" width="240" height="auto" autoplay muted="muted"></video>
+            	<video id="other_videoplayer" width="240" height="auto" autoplay onclick="videoclicked();"></video>
 </body>
 </html>
